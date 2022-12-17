@@ -1,0 +1,22 @@
+Sub CopyAndRenameFolder()
+    ' Declare variables
+    Dim fso As Object
+    Dim sourceFolder As Object
+    Dim destinationFolder As Object
+    Dim newFolderName As String
+    
+    ' Create FileSystemObject
+    Set fso = CreateObject("Scripting.FileSystemObject")
+    
+    ' Set the source and destination folder objects
+    Set sourceFolder = fso.GetFolder("C:\SourceFolder")
+    Set destinationFolder = fso.GetFolder(Range("A1").Value)
+    
+    ' Get the new folder name from a cell in the worksheet
+    newFolderName = Range("B1").Value
+    
+    ' Copy the source folder to the destination and rename it
+    sourceFolder.Copy destinationFolder
+    Set destinationFolder = fso.GetFolder(destinationFolder & "\" & newFolderName)
+    destinationFolder.Name = newFolderName
+End Sub
