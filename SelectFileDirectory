@@ -1,0 +1,18 @@
+Sub SelectFileDirectory()
+  Dim fd As FileDialog
+  Dim strFilePath As String
+
+  Set fd = Application.FileDialog(msoFileDialogFolderPicker)
+
+  ' Set the title of the File Dialog
+  fd.Title = "Select a folder"
+
+  ' Show the File Dialog
+  If fd.Show = -1 Then
+    ' Get the selected folder path
+    strFilePath = fd.SelectedItems(1)
+
+    ' Put the file path in cell A1
+    Range("A1").Value = strFilePath
+  End If
+End Sub
